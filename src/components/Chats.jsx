@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         return(
             <List className={classes.root}>
                 {props.chats.map((chat, key)=>{
-                    return <Chat text={chat.text} type={chat.type} key={key.toString()}/>
+                    return <Chat text={chat.text} type={chat.type} key={key.toString()} select ={props.select}/>
                 })}
             </List>
             

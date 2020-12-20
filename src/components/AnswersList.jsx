@@ -6,7 +6,7 @@ const AnswersList=(props)=>{
     return(
         <div className = "c-grid__answer">
             {props.answers.map((answer,key)=>{
-                return <Answer content = {answer.content} key = {key.toString()}/>
+                return <Answer content = {answer.content} nextId ={answer.nextId} select = {props.select} key = {key.toString()} />
             })}
         </div>
     )

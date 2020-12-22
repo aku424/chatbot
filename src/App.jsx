@@ -47,7 +47,15 @@ export default class App extends React.Component {
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch (true) {
       case (nextQuestionId === 'init'):
-        this.displayNextQuestion(nextQuestionId)
+        setTimeout(()=> this.displayNextQuestion(nextQuestionId),500);
+        break;
+        //httpから始まるnextQuestionIdだったら実行される
+      case (/^http*/.test(nextQuestionId)):
+        const a = document.createElement("a");
+        a.href = nextQuestionId;
+        //別のタグでリングを開けるようにする
+        a.target = "__blank";
+        a.click();
         break;
       default:
         //chatsステイトのコピーのようなもの
@@ -65,7 +73,8 @@ export default class App extends React.Component {
         })
 
         //最後に次の質問を表示させる感酢を呼び出す
-        this.displayNextQuestion(nextQuestionId);
+        //呼び出す際に遅延をさせながら呼び出す
+        setTimeout(()=> this.displayNextQuestion(nextQuestionId),1000);
         break;
     }
   }
@@ -74,6 +83,18 @@ export default class App extends React.Component {
     //selectedAnswerが空っぽで次の質問は初期状態という引数
     //つまり、初期状態
     this.selectAnswer(this.initAnswer, this.state.currentId)
+  }
+
+  //chatがでたら１番したにスクロールされるようにする
+  //コンポーネントの変更があったら実行される。
+  //今回の場合だとchatsのstateが変わったら毎回実行される。
+  componentDidUpdate=()=>{
+    const scrollArea = document.getElementById("scroll-area")
+    //scrollAreaが存在している場合以下を実行します。
+    if (scrollArea){
+      scrollArea.scrollTop = scrollArea.scrollHeight
+    }
+
   }
 
   // initAnswer = () => {

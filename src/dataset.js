@@ -13,20 +13,18 @@ const defaultDataset = {
             {content: "彼女は？", nextId: "lover"},
             {content: "趣味は？", nextId: "hobby"},
             {content: "身長は？", nextId: "height"},
-            {content: "その他", nextId: "contact"},
             {content: "最初の質問に戻る", nextId: "init"}
         ],
-        question: "どれが良いでしょうか？",
+        question: "何が知りたいでしょか？",
     },
     "lover": {
         answers: [
             {content: "いいよ、DMする！", nextId: "https://twitter.com/t_takutooo"},
-            {content: "お付き合いしたい！", nextId: "dating"},
             {content: "ここは押さないで", nextId: "noPush"},
             {content: "あなたのプライベート一覧に戻る", nextId: "private"},
             {content: "最初の質問に戻る", nextId: "init"}
         ],
-        question: "彼女は..............................................................いません。お付き合いしていただけますか？まずはDMください。",
+        question: "彼女は........................................................いません。お付き合いしていただけますか？まずはDMください。",
     },
     "noPush":{
         answers:[
@@ -56,7 +54,6 @@ const defaultDataset = {
         answers: [
             {content: "何部だったの？", nextId: "sports"},
             {content: "アルバイト、インターンシップは何をしたの？", nextId: "job"},
-            {content: "問い合わせる", nextId: "contact"},
             {content: "作った作品とかあるの？", nextId: "works"},
             {content: "最初の質問に戻る", nextId: "init"}
         ],
@@ -80,10 +77,16 @@ const defaultDataset = {
         answers: [
             {content: "ポートフォリオサイト", nextId: "https://develop.d8us2qtd2ba7w.amplifyapp.com/"},
             {content: "Ruby on Railsの簡素なサイトの動作デモ", nextId: "https://www.youtube.com/watch?v=VnViIwsyYyI"},
+            {content: "LP一覧", nextId: "lp"},
+            {content: "あなたしてきたこと一覧に戻る", nextId: "dose"},
+        ],
+        question: "まだまだスキルも胸を晴れるほどではありませんが、あります。何かみたいものはありますか？",
+    },
+    "lp": {
+        answers: [
             {content: "アクセサリーショップのLPサイト", nextId: "https://aku424.github.io/sobolon/"},
             {content: "床屋のLPサイト", nextId: "http://takutooo.com/umetoko/index.html"},
             {content: "架空カフェのLPサイト", nextId: "http://takutooo.com/fresh_cafe/index.html"},
-            {content: "あなたしてきたこと一覧に戻る", nextId: "dose"},
             {content: "最初の質問に戻る", nextId: "init"}        
         ],
         question: "まだまだスキルも胸を晴れるほどではありませんが、あります。何かみたいものはありますか？",
@@ -100,13 +103,14 @@ const defaultDataset = {
     },
     "school": {
         answers: [
-            {content: "あなたのの経歴などの一覧に戻る", nextId: "privacy"},
+            {content: "あなたの経歴などの一覧に戻る", nextId: "privacy"},
             {content: "最初の質問に戻る", nextId: "init"}
         ],
         question: "大学は日本体育大学です。北島康介さん、白井健三さん、柔道最強兄弟の阿部一二三選手、阿部詩さんなど、まだまだたくさんのオリンピック選手を排出している大学です。",
     },
     "old": {
         answers: [
+
             {content: "あなたのの経歴などの一覧に戻る", nextId: "privacy"},
             {content: "最初の質問に戻る", nextId: "init"}
         ],

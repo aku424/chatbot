@@ -3,7 +3,7 @@ import './App.css';
 import { Divider } from '@material-ui/core';
 import defaultDataset from './dataset';
 import './assets/styles/style.css';
-import { AnswersList, Chats } from "./components/index";
+import { AnswersList, Chats, FormDialog} from "./components/index";
 
 
 
@@ -22,6 +22,8 @@ export default class App extends React.Component {
     //bindをしないとレンダリングされるたびみ毎回毎回関数が作られる
     //でもbindしておけば関数を一度呼び出したら再利用できるからパフォーマンス向上につながる。
     this.selectAnswer = this.selectAnswer.bind(this)
+    this.handleClickOpen = this.handleClickOpen.bind(this)
+    this.handleClickClose = this.handleClickClose.bind(this)
   }
   //次の質問を呼び出す関数
   displayNextQuestion = (nextQuestionId)=>{
@@ -49,6 +51,7 @@ export default class App extends React.Component {
       case (nextQuestionId === 'init'):
         setTimeout(()=> this.displayNextQuestion(nextQuestionId),500);
         break;
+
         //httpから始まるnextQuestionIdだったら実行される
       case (/^http*/.test(nextQuestionId)):
         const a = document.createElement("a");
@@ -57,6 +60,11 @@ export default class App extends React.Component {
         a.target = "__blank";
         a.click();
         break;
+
+        case (nextQuestionId === "contact"):
+          this.handleClickOpen()
+        break;
+
       default:
         //chatsステイトのコピーのようなもの
         const chats = this.state.chats
@@ -94,8 +102,20 @@ export default class App extends React.Component {
     if (scrollArea){
       scrollArea.scrollTop = scrollArea.scrollHeight
     }
-
   }
+
+  handleClickOpen = () =>{
+    this.setState({
+        open:true
+    })
+}
+
+handleClickClose = () =>{
+    this.setState({
+        open:false
+    })
+}
+
 
   // initAnswer = () => {
   //   //defaultDatasetの連想配列の中にあるcurrentIdをブラケット構文で取り出している
@@ -132,6 +152,10 @@ export default class App extends React.Component {
           <AnswersList
             answers = {this.state.answers}
             select ={this.selectAnswer}
+          />
+          <FormDialog
+            open ={this.state.open}
+            handleClickClose = {this.handleClickClose}
           />
         </div>
       </section>
